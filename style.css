@@ -1,0 +1,89 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* Ensures padding and border are included in element dimensions */
+}
+
+/* Content */
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+/* Scrolling text */
+.scroll {
+    white-space: nowrap;
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+
+}
+
+.scroll-content {
+    display: inline-flex;
+    animation: scroll 30s linear infinite;
+    will-change: transform;
+    backface-visibility: hidden;
+}
+
+.scroll-content h1 {
+    margin: 0;
+    padding: 0 2rem;
+    flex-shrink: 0;
+    font: 400 8em "Nanum Myeongjo", serif;
+    /* Combine font properties */
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+
+}
+
+/* Paragraph styling */
+p {
+    font-family: "Raleway", serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-size: 1em;
+    text-align: center;
+    line-height: 1.5;
+    margin: 16px 24px;
+}
+
+/* Cookie grid */
+.cookies {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 48px;
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.cookies img {
+    width: 100%;
+    height: auto;
+    transition: transform 0.2s ease;
+}
+
+.cookies img:hover {
+    transform: scale(1.1);
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+    .cookies {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(6, 1fr);
+        max-width: 300px;
+    }
+}
