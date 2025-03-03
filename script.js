@@ -1,3 +1,6 @@
+const hasPickedFortune = sessionStorage.getItem('fortunePicked') === 'true';
+const savedFortuneIndex = sessionStorage.getItem('fortuneIndex');
+
 document.addEventListener('DOMContentLoaded', () => {
     const cookies = document.querySelectorAll('.cookies img');
     const modal = document.getElementById('fortuneModal');
@@ -5,6 +8,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const cookieHeader = document.getElementById('cookieHeader');
     const modalImg = document.querySelector('.modal-content img');
     const closeButton = document.querySelector('.close-button');
+
+    const cookiesContainer = document.querySelector('.cookies');
 
     const cookieTitles = [
         "Chocolate Chip Cookie",
@@ -35,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.classList.add('modal-open');
         modal.classList.add('show');
     };
-    
+
     // Function to close modal
     const closeModal = () => {
         modal.classList.remove('show');
@@ -43,16 +48,59 @@ document.addEventListener('DOMContentLoaded', () => {
         window.scrollTo(0, modal.dataset.scrollPosition);
     };
 
-    cookies.forEach((cookie, index) => {
-        cookie.addEventListener('click', () => {
-            modalImg.src = cookie.src;
-            cookieHeader.textContent = cookieTitles[index];
-            fortuneText.textContent = fortunes[index];
-            openModal();
+    // Function to show the fortune for a specific cookie
+    const showFortune = (index) => {
+        modalImg.src = cookies[index].src;
+        cookieHeader.textContent = cookieTitles[index];
+        fortuneText.textContent = fortunes[index];
+        openModal();
+    };
+
+    // Function to disable cookie selection except the selected one
+    const disableCookies = (selectedIndex) => {
+        sessionStorage.setItem('fortunePicked', 'true');
+        sessionStorage.setItem('fortuneIndex', selectedIndex);
+
+        cookiesContainer.classList.remove('selection-disabled');
+        
+        cookies.forEach((cookie, index) => {
+            if (index !== parseInt(selectedIndex)) {
+                cookie.classList.add('disabled-cookie');
+                cookie.style.pointerEvents = 'none';
+            } else {
+                cookie.classList.add('selected-cookie');
+                cookie.style.pointerEvents = 'auto';
+                
+                cookie.addEventListener('click', () => {
+                    showFortune(index);
+                });
+            }
         });
-    });
+        
+        const infoMsg = document.querySelector('.info-message');
+        if (infoMsg) {
+            infoMsg.style.display = 'block';
+        }
+    };
+
+    // Check if user has already picked a fortune
+    if (hasPickedFortune && savedFortuneIndex !== null) {
+        const selectedIndex = parseInt(savedFortuneIndex);
+        disableCookies(selectedIndex);
+        
+        cookies[selectedIndex].addEventListener('click', () => {
+            showFortune(selectedIndex);
+        });
+        
+    } else {
+        cookies.forEach((cookie, index) => {
+            cookie.addEventListener('click', () => {
+                showFortune(index);
+                disableCookies(index);
+            });
+        });
+    }
 
     // Close the modal when clicking the close button
     closeButton.addEventListener('click', closeModal);
-
 });
