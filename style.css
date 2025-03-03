@@ -1,8 +1,13 @@
-html, body {
+html {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    /* Ensures padding and border are included in element dimensions */
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 /* Content */
@@ -25,16 +30,24 @@ html, body {
 .scroll-content {
     display: inline-flex;
     animation: scroll 30s linear infinite;
-    will-change: transform;
     backface-visibility: hidden;
+.scroll-content h1 {
+    margin: 0;
+    padding: 0 2rem;
+    flex-shrink: 0;
+    font-size: 8rem;
+    font-weight: 100;
+    font-family: "Nanum Myeongjo", serif;
+}
 }
 
 .scroll-content h1 {
     margin: 0;
     padding: 0 2rem;
     flex-shrink: 0;
-    font: 400 8em "Nanum Myeongjo", serif;
-    /* Combine font properties */
+    font-size: 8rem;
+    font-weight: 100;
+    font-family: "Nanum Myeongjo", serif;
 }
 
 @keyframes scroll {
@@ -50,10 +63,11 @@ html, body {
 
 /* Paragraph styling */
 p {
-    font-family: "Raleway", serif;
+    font-family: "Space Grotesk", sans-serif;
     font-optical-sizing: auto;
-    font-weight: 500;
-    font-size: 1em;
+    padding: 0 2rem;
+    grid-template-columns: 
+        repeat(3, 1fr);
     text-align: center;
     line-height: 1.5;
     margin: 16px 24px;
@@ -66,7 +80,7 @@ p {
     gap: 48px;
     max-width: 960px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 20px 20px 32px 20px;
 }
 
 .cookies img {
@@ -76,14 +90,126 @@ p {
 }
 
 .cookies img:hover {
-    transform: scale(1.1);
+    transform: scale(1.05);
+}
+
+
+/* Modal styles */
+
+.modal {
+    display: none; 
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+    /* Remove these conflicting properties */
+    /* background: black; */
+    /* opacity: 0.7; */
+}
+
+.modal.show {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: white; /* Solid white background */
+    text-align: center;
+    padding: 30px;
+    width: 80%;
+    max-width: 500px;
+    max-height: 90vh;
+    border-radius: 8px;
+    position: relative;
+    animation: modalFadeIn 0.4s;
+    margin: 0;
+    overflow-y: auto;
+    /* Add this to ensure opacity is 1 */
+    opacity: 1;
+}
+
+.close-button {
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    color: rgba(0, 0, 0, 0.5);
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-button:hover {
+    color: black;
+}
+
+.modal img {
+    width: 60%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+.modal label {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    color: rgba(0, 0, 0, 0.5);
+    text-transform: uppercase;
+}
+
+.modal #cookieHeader {
+    font-family: "Nanum Myeongjo", serif;
+    font-size: 2rem;
+    font-weight: 400;
+    color: rgba(0, 0, 0, 0.9);
+    margin: 0;
+}
+
+.modal-label-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 2px;
+    margin: 16px auto 0;
+
+}
+
+.modal #fortuneText {
+    font-family: "Space Grotesk", sans-serif;
+    text-align: center;
+}
+
+body.modal-open {
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+}
+
+@keyframes modalFadeIn {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* Responsive design for smaller screens */
 @media (max-width: 768px) {
     .cookies {
-        grid-template-columns: 1fr;
-        grid-template-rows: repeat(6, 1fr);
+        grid-template-columns: 
+            1fr;
+        grid-template-rows: 
+            repeat(6, 1fr);
         max-width: 300px;
     }
 }

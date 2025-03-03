@@ -8,9 +8,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
     <title>Document</title>
 </head>
 
@@ -21,7 +19,8 @@
             <h1>Pick your fortune cookies</h1>
         </div>
     </div>
-    <p>Each cookie holds a secret fortune. Choose one and take your fortune home today. <br> ✨ Fortunes refreshes monthly ✨
+    <p>Each cookie holds a secret fortune. Choose one and take your fortune home today. <br> ✨ Fortunes refreshes
+        monthly ✨
     </p>
 
     <div class="cookies">
@@ -31,6 +30,19 @@
         <img src="asset/img-4.png" alt="">
         <img src="asset/img-5.png" alt="">
         <img src="asset/img-6.png" alt="">
+    </div>
+
+    <!-- Modal -->
+    <div id="fortuneModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <img src="asset/img-1.png" alt="">
+            <div class="modal-label-header">
+                <label>Your Picked</label>
+                <p id="cookieHeader"></p>
+            </div>
+            <p id="fortuneText"></p>
+        </div>
     </div>
 
     <script src="script.js"></script>
