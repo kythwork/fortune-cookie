@@ -1,10 +1,4 @@
-html {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
+html, body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -24,51 +18,37 @@ body {
     overflow: hidden;
     width: 100%;
     position: relative;
-
 }
 
 .scroll-content {
     display: inline-flex;
     animation: scroll 30s linear infinite;
     backface-visibility: hidden;
-
-    .scroll-content h1 {
-        margin: 0;
-        padding: 0 2rem;
-        flex-shrink: 0;
-        font-size: 8rem;
-        font-weight: 100;
-        font-family: "Nanum Myeongjo", serif;
-    }
 }
 
 .scroll-content h1 {
     margin: 0;
-    padding: 0 2rem;
-    flex-shrink: 0;
+    padding: 0;
     font-size: 8rem;
-    font-weight: 100;
+    font-weight: 200;
     font-family: "Nanum Myeongjo", serif;
+    word-spacing: -5rem;
+    white-space: nowrap;
+}
+
+.scroll-content h1:not(:first-child) {
+    margin-left: 2rem;
 }
 
 @keyframes scroll {
-    0% {
-        transform: translateX(0);
-    }
-
-    100% {
-        transform: translateX(-50%);
-    }
-
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
 }
 
 /* Paragraph styling */
 p {
     font-family: "Space Grotesk", sans-serif;
-    font-optical-sizing: auto;
     padding: 0 2rem;
-    grid-template-columns:
-        repeat(3, 1fr);
     text-align: center;
     line-height: 1.5;
     margin: 16px 24px;
@@ -94,9 +74,7 @@ p {
     transform: scale(1.05);
 }
 
-
 /* Modal styles */
-
 .modal {
     display: none;
     position: fixed;
@@ -160,6 +138,7 @@ p {
 
 .modal #cookieHeader {
     font-family: "Nanum Myeongjo", serif;
+    word-spacing: -1.5rem;
     font-size: 2rem;
     font-weight: 400;
     color: rgba(0, 0, 0, 0.9);
@@ -174,7 +153,6 @@ p {
     width: 100%;
     gap: 2px;
     margin: 16px auto 0;
-
 }
 
 .modal #fortuneText {
@@ -189,17 +167,9 @@ body.modal-open {
 }
 
 @keyframes modalFadeIn {
-    from {
-        transform: translateY(-20px);
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    from { transform: translateY(-20px); opacity: 0; }
+    to { opacity: 1; transform: translateY(0); }
 }
-
 
 .cookies.selection-disabled {
     pointer-events: none;
@@ -232,10 +202,8 @@ body.modal-open {
 /* Responsive design for smaller screens */
 @media (max-width: 768px) {
     .cookies {
-        grid-template-columns:
-            1fr;
-        grid-template-rows:
-            repeat(6, 1fr);
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(6, 1fr);
         max-width: 300px;
     }
 }
